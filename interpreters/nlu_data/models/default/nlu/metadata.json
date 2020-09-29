@@ -133,6 +133,6 @@
             "class": "rasa.nlu.extractors.entity_synonyms.EntitySynonymMapper"
         }
     ],
-    "trained_at": "20200929-071036",
+    "trained_at": "20200929-084424",
     "rasa_version": "1.10.14"
 }
