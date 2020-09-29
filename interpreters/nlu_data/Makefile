@@ -26,5 +26,12 @@ tar-order-nlu:
 train-order-nlu:
 	make rasa-train-order-nlu tar-order-nlu
 
+rasa-train-final_order-nlu:
+	rasa train nlu -c nlu_config.yml --nlu final_order/ --fixed-model-name final_order --verbose
+tar-final_order-nlu:
+	tar -xzvf models/final_order.tar.gz -C models/final_order/
+train-final_order-nlu:
+	make rasa-train-final_order-nlu tar-final_order-nlu
+
 train-all:
-	make train-default-nlu train-menu_or_help-nlu train-list_options-nlu train-order-nlu
+	make train-default-nlu train-menu_or_help-nlu train-list_options-nlu train-order-nlu train-final_order-nlu

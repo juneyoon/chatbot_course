@@ -261,6 +261,22 @@ def action_confirm_order(user_state, message_data, interpreted):
         else:
             return list_options_generate(user_state)
 
+def action_final_order(user_state, message_data, interpreted):
+    if interpreted['intent']['name'] == "yes_simple":
+        user_state['state'] = "start"
+        return {
+            "type": "text",
+            "message": "What else would you like?"
+        }
+    if interpreted['intent']['name'] == "finish":
+        user_state['state'] = "ordered"
+        return {
+            "type": "text",
+            "message": "Ok, thanks for your order! Will be ready in 30 minutes"
+        }
+    if interpreted['intent']['name'] == "yes_x_y":
+        user_state['FoodFilter'].reset_filters()
+        return filter_parse_and_search(user_state, interpreted)
 
 global_steps = {
     "start": {
@@ -294,5 +310,9 @@ global_steps = {
     "confirm_order": {
         "interpreter": "OrderInterpreter",
         "action": action_confirm_order
+    },
+    "final_order": {
+        "interpreter": "FinalOrderInterpreter",
+        "action": action_final_order
     }
 }

@@ -1,0 +1,87 @@
+## intent:yes_simple
+- Sure
+- yes
+- ok
+- yes sure
+- absolutely
+- for sure
+- definitely
+- ok, sure
+- of course
+
+## intent:finish
+- no
+- no, that's all
+- that's all
+- that's it
+- finish the order
+- nope
+- no, thank you
+- no, I'm done
+
+## intent:yes_x_y
+- Yes, I want [a pizza](order_item)
+- Yes, I want [a soup](order_item) and [a pizza](order_item)
+- Do you have [pizza](order_item)?
+- I want something [italian](order_item)
+- [a pizza](order_item) and [something sweet](order_item)
+- I want [a pizza](order_item) and some [soup](order_item)
+- What do you have [sweet](order_item)?
+- I want [a meal](order_item) and [a soup](order_item)
+- What kind of [pizza](order_item) do you have?
+- Give me something [japanese](order_item)
+- Yes, I'm looking for something from [France](order_item)
+- Do you have [mexican](order_item)?
+- Sure, what do you have that's [vegan](order_item)?
+- I need something [without gluten](order_item)
+- Something [gluten-free](order_item)?
+- Do you have any [dairy-free](order_item) [meals](order_item)?
+- I'm a [vegetarian](order_item)
+- Yes, I want something [egg-free](order_item)
+- Do you have [Japanese ramen noodle soup](order_item)?
+- I want [Japanese rice/gohan](order_item)
+- I want [Miso Soup](order_item)
+- I would like some [Smoked salmon & avocado sushi](order_item)
+- Do you have [Beetroot & avocado nori rolls with wasabi dipping sauce](order_item)?
+- Yes, I want [Gyoza](order_item)
+- I want [Yaki udon](order_item)
+- I'm looking for [Onigiri - Japanese Rice Balls](order_item)
+- I'm looking for [Mochi](order_item)
+- I would like some [Vegan ramen](order_item)
+- I would like some [Yakisoba - Japanese Stir Fry Noodles](order_item)
+- Yes, I want [Quiche Lorraine](order_item)
+- I would like some [White chocolate crème brûlée](order_item)
+- I'm looking for [Caramel soufflés with caramel sauce](order_item)
+- Do you have [Macarons](order_item)?
+- I want [Ratatouille](order_item)
+- I would like some [Salade niçoise](order_item)
+- Yes, I want [Pork cassoulet](order_item)
+- I want [Coq au vin](order_item)
+- I want [Tarte Tatin](order_item)
+- I want [Pizza Margherita](order_item)
+- Yes, I want [Vegan pizza Margherita](order_item)
+- I'm looking for [Gluten-free pizza](order_item)
+- I want [Cheese & bacon pizza](order_item)
+- Yes, I want [Tuna pizza](order_item)
+- I'm looking for [Tortellini with pesto & broccoli](order_item)
+- Yes, I want [Strawberry panna cotta](order_item)
+- Do you have [Carbonara with chicken](order_item)?
+- Yes, I want [Chicken meatballs spaghetti](order_item)
+- I would like some [Calzone](order_item)
+- I'm looking for [Spaghetti bolognese](order_item)
+- I want [Summer courgette risotto](order_item)
+- I'm looking for [Lasagne](order_item)
+- I'm looking for [Tiramisu](order_item)
+- I would like some [Ultimate guacamole](order_item)
+- Do you have [sweetcorn & tomato nachos](order_item)?
+- I want [Chicken quesadillas](order_item)
+- I want [Sweet potato, peanut butter & chilli quesadillas](order_item)
+- Do you have [Chicken enchiladas](order_item)?
+- Yes, I want [Chicken burrito](order_item)
+- Do you have [Vegan burritos](order_item)?
+- Yes, I want [Fish tacos](order_item)
+- I want [Spicy black bean tacos](order_item)
+- Yes, I want [Chilli Con Carne](order_item)
+- I would like some [Posole](order_item)
+- What [pizza](order_item) do you have?
+- what [deserts](order_item) do you have?
