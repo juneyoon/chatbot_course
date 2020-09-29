@@ -20,7 +20,8 @@ def new_state():
 def interpret_service(interpreter, intent_text):
     route_map = {
         "DefaultInterpreter": "default",
-        "MenuOrHelpInterpreter": "menu_or_help"
+        "MenuOrHelpInterpreter": "menu_or_help",
+        "ListOptionsInterpreter": "list_options"
     }
 
     if interpreter not in route_map:
@@ -105,3 +106,11 @@ def get_max_and_index(scores):
             m_i = i
 
     return max_s, m_i
+
+def list_options_generate(user_state):
+    results = user_state['FoodFilter'].search()
+    user_state['current_options'] = results
+    message = parse_search_results(results)
+
+    user_state['state'] = "list_options"
+    return message

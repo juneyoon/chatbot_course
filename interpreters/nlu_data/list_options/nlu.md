@@ -1,0 +1,81 @@
+## intent:yes_x_y
+- Yes, I want [the pizza](order_item)
+- Yes, I want [the soup](order_item) and [the pizza](order_item)
+- [the pizza](order_item)
+- I want [Japanese rice/gohan](order_item)
+- I want [Miso Soup](order_item)
+- I would like some [Smoked salmon & avocado sushi](order_item)
+- Yes, I want [Gyoza](order_item)
+- I want [Yaki udon](order_item)
+- I would like some [Vegan ramen](order_item)
+- I would like some [Yakisoba - Japanese Stir Fry Noodles](order_item)
+- Yes, I want [Quiche Lorraine](order_item)
+- I would like the [White chocolate crème brûlée](order_item)
+- Do you have [Macarons](order_item)?
+- I want [Ratatouille](order_item)
+- I would like the [Salade niçoise](order_item) and the [Tarte Tatin](order_item)
+- Yes, I want [Pork cassoulet](order_item)
+- I want [Coq au vin](order_item)
+- I want [Tarte Tatin](order_item)
+- I want [Pizza Margherita](order_item)
+- Yes, I want [Vegan pizza Margherita](order_item)
+- The [Gluten-free pizza](order_item)
+- I want [Cheese & bacon pizza](order_item)
+- Yes, I want [Tuna pizza](order_item)
+- Yes, I want [Strawberry panna cotta](order_item)
+- Do you have [Carbonara with chicken](order_item)?
+- Yes, I want [Chicken meatballs spaghetti](order_item)
+- I would like the [Calzone](order_item) and the [Chicken burrito](order_item)
+- I want [Summer courgette risotto](order_item)
+- I would like the [Ultimate guacamole](order_item)
+- Do you have [sweetcorn & tomato nachos](order_item)?
+- I want the [Chicken quesadillas](order_item)
+- I want the [Sweet potato, peanut butter & chilli quesadillas](order_item)
+- Yes, I want [Chicken burrito](order_item)
+- Yes, I want [Fish tacos](order_item)
+- I want [Spicy black bean tacos](order_item)
+- Yes, I want [Chilli Con Carne](order_item)
+- I would like the [Posole](order_item)
+- The [panna cotta](order_item) looks nice
+- Give me the [Mochi](order_item)
+- Give me the [pizza](order_item)
+
+## intent:yes_simple
+- Sure
+- yes
+- ok
+- yes sure
+- absolutely
+- for sure
+- definitely
+- ok, sure
+- of course
+- that's fine
+- that sounds ok
+- looks nice
+- looks good
+- seems ok
+
+## intent:something_else
+- Do you have [pizza](order_item)?
+- I want something [italian](order_item)
+- What do you have [sweet](order_item)?
+- I want [a meal](order_item) and [a soup](order_item)
+- What kind of [pizza](order_item) do you have?
+- Give me something [japanese](order_item)
+- Yes, I'm looking for something from [France](order_item)
+- Do you have [mexican](order_item)?
+- Sure, what do you have that's [vegan](order_item)?
+- I need something [without gluten](order_item)
+- Something [gluten-free](order_item)?
+- Do you have any [dairy-free](order_item) [meals](order_item)?
+- I'm a [vegetarian](order_item)
+- Yes, I want something [egg-free](order_item)
+- Do you have [Beetroot & avocado nori rolls with wasabi dipping sauce](order_item)?
+- Do you have [Vegan burritos](order_item)?
+- Do you have [Chicken enchiladas](order_item)?
+- What [pizza](order_item) do you have?
+- any [vegan](order_item) options?
+- any [vegetarian](order_item) options?
+- [dairy-free](order_item) only please
+- Sounds good but I'm [vegan](order_item), do you have anything [vegan](order_item)?

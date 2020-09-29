@@ -171,3 +171,64 @@ class FoodFilterClass:
         sentences_embeddings = sentence_encoder_model(sentences)
         scores = np.inner(sentence_embedding, sentences_embeddings)
         return scores
+
+    def search_in_by_word(self, options, search_key):
+        filter_data = options.copy()
+        results = []
+        for food in filter_data:
+            if food['name'].lower().find(search_key.lower())>=0:
+                results.append(food)
+
+        return results
+
+
+    def search_in_by_entity(self, options, filter_entity):
+        results = options.copy()
+        if filter_entity['type'] == 'categories':
+            new_results = []
+            for food in results:
+                if food['category'] == filter_entity['value']:
+                    new_results.append(food)
+            results = new_results
+
+        if filter_entity['type'] == 'countries':
+            new_results = []
+            for food in results:
+                if food['country'] == filter_entity['value']:
+                    new_results.append(food)
+            results = new_results
+
+        if filter_entity['type'] == 'specials':
+            new_results = []
+            for food in results:
+                for special in food['special']:
+                    if special == filter_entity['value']:
+                        new_results.append(food)
+                        break
+            results = new_results
+
+        if filter_entity['type'] == 'names':
+            new_results = []
+            for food in results:
+                if food['name'] == filter_entity['value']:
+                    new_results.append(food)
+            results = new_results
+
+        return results
+
+    def search_in(self, options, entities):
+        not_clear = False
+        food = []
+        for entity in entities:
+            results = self.search_in_by_word(options, entity['value'])
+            if len(results) != 1:
+                filter_entity = self.find_entity(entity['value'], ignore_names=False)
+                if filter_entity:
+                    results = self.search_in_by_entity(options, filter_entity)
+                    if len(results) != 1:
+                        not_clear = True
+                    food.extend(results)
+            else:
+                food.append(results[0])
+
+        return not_clear, food

@@ -154,6 +154,54 @@ def action_help_restrictions(user_state, message_data, interpreted):
     user_state['state'] = "list_options"
     return message
 
+def action_list_options(user_state, message_data, interpreted):
+    if interpreted['intent']['name'] == "yes_x_y":
+        food = []
+
+        not_clear = False
+        if interpreted['entities']:
+            not_clear, food = user_state['FoodFilter'].search_in(user_state['current_options'], interpreted['entities'])
+        else:
+            not_clear = True
+
+        if not_clear:
+            user_state['state'] = "list_options"
+            return {
+                "type": "text",
+                "message": "Sorry couldn't understand what you meant, please be more precise in your choice. Or do you want something else?"
+            }
+        else:
+            user_state['order'].extend(food)
+            user_state['state'] = "confirm_order"
+            return generate_order_confirm(user_state['order'])
+
+    if interpreted['intent']['name'] == "something_else":
+        if interpreted['entities']:
+            not_clear, food = user_state['FoodFilter'].search_in(user_state['current_options'], interpreted['entities'])
+            if len(food)>=1:
+                user_state['current_options'] = food
+                return parse_search_results(food)
+            else:
+                return {
+                    "type": "text",
+                    "message": "Nothing found sorry"
+                }
+        else:
+            user_state['state'] = "start"
+            return {
+                "type": "text",
+                "message": "What would you like?"
+            }
+    if interpreted['intent']['name'] == "yes_simple":
+        if len(user_state['current_options']) == 1:
+            user_state['order'].extend(user_state['current_options'])
+            user_state['state'] = "confirm_order"
+            return generate_order_confirm(user_state['order'])
+        else:
+            message = list_options_generate(user_state)
+            message['message'] = "Ok, please choose from here if you like anything"
+            return message
+
 global_steps = {
     "start": {
         "interpreter": "DefaultInterpreter",
@@ -178,5 +226,9 @@ global_steps = {
     "help_restrictions": {
         "interpreter": "DefaultInterpreter",
         "action": action_help_restrictions
+    },
+    "list_options": {
+        "interpreter": "ListOptionsInterpreter",
+        "action": action_list_options
     }
 }
