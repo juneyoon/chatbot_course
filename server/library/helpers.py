@@ -17,15 +17,16 @@ def new_state():
     state['FoodFilter'] = FoodFilterClass()
     return state
 
-def interpret_service(interpretor, intent_text):
+def interpret_service(interpreter, intent_text):
     route_map = {
         "DefaultInterpreter": "default",
+        "MenuOrHelpInterpreter": "menu_or_help"
     }
 
-    if interpretor not in route_map:
+    if interpreter not in route_map:
         raise Exception("not ok")
 
-    route = route_map[interpretor]
+    route = route_map[interpreter]
 
     try:
         r = requests.post("http://localhost:5060/{}".format(route),
@@ -68,4 +69,29 @@ def parse_search_results(results):
         "type": "list_options",
         "message": message,
         "options": options
+    }
+
+def treat_decline_case(user_state):
+    if user_state.get('order'):
+        user_state['state'] = "confirm_order"
+        return generate_order_confirm(food)
+    else:
+        user_state['state'] = "canceled"
+        return {
+            "type": "text",
+            "message": "That’s ok, I’ll be here when you need me!"
+        }
+
+def generate_order_confirm(food):
+    food_str = ""
+    price = 0
+    if len(food)>1:
+        food_str = ", ".join([f['name'] for f in food])
+    else:
+        food_str = food[0]['name']
+    for f in food:
+        price += f['price']
+    return {
+        "type": "text",
+        "message": "So you want {} for {}$?".format(food_str, price)
     }
