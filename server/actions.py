@@ -75,6 +75,84 @@ def action_menu_or_help(user_state, message_data, interpreted):
     if interpreted['intent']['name'] == "decline":
         return treat_decline_case(user_state)
 
+def action_help_category(user_state, message_data, interpreted):
+    options = ["meal", "sweet", "soup", "pizza"]
+    entities = []
+    if interpreted['entities']:
+        for entity in interpreted['entities']:
+            entities.append(entity['value'])
+    else:
+        entities = message_data['message'].split()
+
+    for entity in entities:
+        sim_scores = user_state['FoodFilter'].similarity_sentences(options, entity)
+        max_s, max_index = get_max_and_index(sim_scores)
+        if max_s >= 0.5:
+            filter = {
+                'score': max_s,
+                'type': 'categories',
+                'value': options[max_index]
+            }
+            user_state['FoodFilter'].add_filter(filter)
+
+    user_state['state'] = "help_country"
+    return {
+        "type": "text",
+        "message": "Do you preffer a specific cuisine? We have French, Japanese, Italian and Mexican."
+    }
+
+def action_help_country(user_state, message_data, interpreted):
+    options = ["France", "Japan", "Italy", "Mexico"]
+    entities = []
+    if interpreted['entities']:
+        for entity in interpreted['entities']:
+            entities.append(entity['value'])
+    else:
+        entities = message_data['message'].split()
+
+    for entity in entities:
+        sim_scores = user_state['FoodFilter'].similarity_sentences(options, entity)
+        max_s, max_index = get_max_and_index(sim_scores)
+        if max_s >= 0.5:
+            filter = {
+                'score': max_s,
+                'type': 'countries',
+                'value': options[max_index]
+            }
+            user_state['FoodFilter'].add_filter(filter)
+
+    user_state['state'] = "help_restrictions"
+    return {
+        "type": "text",
+        "message": "Do you have any food restrictions?"
+    }
+
+def action_help_restrictions(user_state, message_data, interpreted):
+    options = ["gluten-free", "vegan", "egg-free", "vegetarian", "dairy-free"]
+    entities = []
+    if interpreted['entities']:
+        for entity in interpreted['entities']:
+            entities.append(entity['value'])
+    else:
+        entities = message_data['message'].split()
+
+    for entity in entities:
+        sim_scores = user_state['FoodFilter'].similarity_sentences(options, entity)
+        max_s, max_index = get_max_and_index(sim_scores)
+        if max_s >= 0.5:
+            filter = {
+                'score': max_s,
+                'type': 'specials',
+                'value': options[max_index]
+            }
+            user_state['FoodFilter'].add_filter(filter)
+
+    results = user_state['FoodFilter'].search()
+    user_state['current_options'] = results
+    message = parse_search_results(results)
+
+    user_state['state'] = "list_options"
+    return message
 
 global_steps = {
     "start": {
@@ -88,5 +166,17 @@ global_steps = {
     "menu_or_help": {
         "interpreter": "MenuOrHelpInterpreter",
         "action": action_menu_or_help
+    },
+    "help_category": {
+        "interpreter": "DefaultInterpreter",
+        "action": action_help_category
+    },
+    "help_country": {
+        "interpreter": "DefaultInterpreter",
+        "action": action_help_country
+    },
+    "help_restrictions": {
+        "interpreter": "DefaultInterpreter",
+        "action": action_help_restrictions
     }
 }

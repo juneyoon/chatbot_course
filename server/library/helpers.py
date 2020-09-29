@@ -95,3 +95,13 @@ def generate_order_confirm(food):
         "type": "text",
         "message": "So you want {} for {}$?".format(food_str, price)
     }
+
+def get_max_and_index(scores):
+    max_s = 0
+    m_i = -1
+    for i in range(0, len(scores)):
+        if scores[i] > max_s:
+            max_s = scores[i]
+            m_i = i
+
+    return max_s, m_i

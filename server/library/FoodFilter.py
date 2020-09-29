@@ -164,3 +164,10 @@ class FoodFilterClass:
         user_state['specials'] = specials
 
         return " and ".join([s['name'] for s in specials])
+
+    def similarity_sentences(self, sentences, sentence):
+        global sentence_encoder_model
+        sentence_embedding = sentence_encoder_model([sentence])[0]
+        sentences_embeddings = sentence_encoder_model(sentences)
+        scores = np.inner(sentence_embedding, sentences_embeddings)
+        return scores

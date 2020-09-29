@@ -84,3 +84,8 @@ open: https://127.0.0.1:8080
 [Tue Sep 29 2020 10:59:51 GMT+0000 (UTC)]  "[36mGET[39m [36m/assets/css/style.css[39m" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
 [Tue Sep 29 2020 11:00:08 GMT+0000 (UTC)]  "[36mGET[39m [36m/[39m" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
 [Tue Sep 29 2020 11:00:08 GMT+0000 (UTC)]  "[36mGET[39m [36m/assets/css/style.css[39m" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+[Tue Sep 29 2020 11:24:51 GMT+0000 (UTC)]  "[36mGET[39m [36m/[39m" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+[Tue Sep 29 2020 11:24:51 GMT+0000 (UTC)]  "[36mGET[39m [36m/assets/css/style.css[39m" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+[Tue Sep 29 2020 11:24:52 GMT+0000 (UTC)]  "[36mGET[39m [36m/assets/js/chat_client.js[39m" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+[Tue Sep 29 2020 11:24:52 GMT+0000 (UTC)]  "[36mGET[39m [36m/assets/images/send_icon_white.png[39m" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+[Tue Sep 29 2020 11:25:38 GMT+0000 (UTC)]  "[36mGET[39m [36m/assets/images/food_images/16.jpg[39m" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"

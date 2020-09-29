@@ -97,6 +97,8 @@
 - Yes, I want [Spicy black bean tacos](order_item)
 - I would like some [Chilli Con Carne](order_item)
 - I would like some [Posole](order_item)
+- [French](order_item) sounds good
+- Just a [meal](order_item) please
 
 ## intent:decline
 - no
