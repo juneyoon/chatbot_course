@@ -4,3 +4,5 @@ client_server:
 	cd client; nohup http-server -o --cors -S -C cert.pem &
 server:
 	cd server; nohup python server.py &
+interpreters_server:
+	cd interpreters; nohup python interpreters.py &
