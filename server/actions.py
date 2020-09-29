@@ -22,13 +22,13 @@ def action_default(user_state, message_data, interpreted):
         }
 
     if interpreted['intent']['name'] == "yes_x_y":
-        return {
-            "type": "text",
-            "message": "Will list items"
-        }
+        user_state['FoodFilter'].reset_filters()
+        return filter_parse_and_search(user_state, interpreted)
 
     if interpreted['intent']['name'] == "yes_not_sure":
-        specials = "Tacos and Miso soup"
+        user_state['state'] = "menu_or_help"
+        specials = user_state['FoodFilter'].generate_specials(user_state)
+        user_state['menu'] = specials
         return {
             "type": "text",
             "message": "Ok then, I can help you. For today’s special we have {} with 10$. Is that ok for you, or would you like me to help you find something else?".format(specials)
