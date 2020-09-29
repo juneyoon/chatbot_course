@@ -141,4 +141,4 @@ dist/
 # JetBrains IDE
 .idea/
 
-*.nohup
+*hup.out

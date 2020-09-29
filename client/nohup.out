@@ -22,3 +22,9 @@ open: https://127.0.0.1:8080
 [Mon Sep 28 2020 10:50:02 GMT+0000 (UTC)]  "[36mGET[39m [36m/assets/images/send_icon_white.png[39m" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
 [Mon Sep 28 2020 10:50:02 GMT+0000 (UTC)]  "[36mGET[39m [36m/favicon.ico[39m" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
 [Mon Sep 28 2020 10:50:02 GMT+0000 (UTC)]  "[31mGET[39m [31m/favicon.ico[39m" Error ([31m404[39m): "[31mNot found[39m"
+[33mStarting up http-server, serving [39m[36m./[39m[33m through[39m[36m https[39m[33m[39m
+[33mAvailable on:[39m
+  https://127.0.0.1:[32m8080[39m
+  https://10.128.0.4:[32m8080[39m
+Hit CTRL-C to stop the server
+open: https://127.0.0.1:8080
