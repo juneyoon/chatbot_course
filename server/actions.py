@@ -202,6 +202,66 @@ def action_list_options(user_state, message_data, interpreted):
             message['message'] = "Ok, please choose from here if you like anything"
             return message
 
+def action_confirm_order(user_state, message_data, interpreted):
+    if interpreted['intent']['name'] == "yes_simple":
+        user_state['state'] = "final_order"
+        return {
+            "type": "text",
+            "message": "Anything else?"
+        }
+    if interpreted['intent']['name'] == "decline":
+        return list_options_generate(user_state)
+    if interpreted['intent']['name'] == "not_x":
+        food = user_state['order'].copy()
+        for entity in interpreted['entities']:
+            filter_entity = user_state['FoodFilter'].find_entity(entity['value'], ignore_names=False)
+            if filter_entity:
+                for i in range(0, len(food)):
+                    if food[i]['name'] == filter_entity['value']:
+                        food.pop(i)
+                        break
+        if food:
+            user_state['order'] = food
+            user_state['state'] = "confirm_order"
+            return generate_order_confirm(user_state['order'])
+        else:
+            return list_options_generate(user_state)
+    if interpreted['intent']['name'] == "just_y":
+        food = user_state['order'].copy()
+        new_food = []
+        for entity in interpreted['entities']:
+            filter_entity = user_state['FoodFilter'].find_entity(entity['value'], ignore_names=False)
+            if filter_entity:
+                for i in range(0, len(food)):
+                    if food[i]['name'] == filter_entity['value']:
+                        new_food.append(food[i])
+                        break
+        if new_food:
+            user_state['order'] = new_food
+            user_state['state'] = "confirm_order"
+            return generate_order_confirm(user_state['order'])
+        else:
+            return list_options_generate(user_state)
+    if interpreted['intent']['name'] == "just_y+not_x":
+        food = user_state['order'].copy()
+        new_food = []
+
+        for entity in interpreted['entities']:
+            filter_entity = user_state['FoodFilter'].find_entity(entity['value'], ignore_names=False)
+            if filter_entity:
+                for i in range(0, len(food)):
+                    if food[i]['name'] == filter_entity['value']:
+                        if entity['entity'] == "order_item_yes":
+                            new_food.append(food[i])
+                        break
+        if new_food:
+            user_state['order'] = new_food
+            user_state['state'] = "confirm_order"
+            return generate_order_confirm(user_state['order'])
+        else:
+            return list_options_generate(user_state)
+
+
 global_steps = {
     "start": {
         "interpreter": "DefaultInterpreter",
@@ -230,5 +290,9 @@ global_steps = {
     "list_options": {
         "interpreter": "ListOptionsInterpreter",
         "action": action_list_options
+    },
+    "confirm_order": {
+        "interpreter": "OrderInterpreter",
+        "action": action_confirm_order
     }
 }

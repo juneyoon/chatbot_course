@@ -1,0 +1,1 @@
+{"0": "decline", "1": "just_y", "2": "just_y+not_x", "3": "not_x", "4": "yes_simple"}

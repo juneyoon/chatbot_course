@@ -21,7 +21,8 @@ def interpret_service(interpreter, intent_text):
     route_map = {
         "DefaultInterpreter": "default",
         "MenuOrHelpInterpreter": "menu_or_help",
-        "ListOptionsInterpreter": "list_options"
+        "ListOptionsInterpreter": "list_options",
+        "OrderInterpreter": "order"
     }
 
     if interpreter not in route_map:

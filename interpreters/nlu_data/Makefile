@@ -19,5 +19,12 @@ tar-list_options-nlu:
 train-list_options-nlu:
 	make rasa-train-list_options-nlu tar-list_options-nlu
 
+rasa-train-order-nlu:
+	rasa train nlu -c nlu_config.yml --nlu order/ --fixed-model-name order --verbose
+tar-order-nlu:
+	tar -xzvf models/order.tar.gz -C models/order/
+train-order-nlu:
+	make rasa-train-order-nlu tar-order-nlu
+
 train-all:
-	make train-default-nlu train-menu_or_help-nlu train-list_options-nlu
+	make train-default-nlu train-menu_or_help-nlu train-list_options-nlu train-order-nlu
