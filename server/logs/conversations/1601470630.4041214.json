@@ -1,0 +1,37 @@
+[
+    {
+        "from": "user",
+        "message": "yes",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.999969482421875,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.999969482421875,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 2.502244387869723e-05,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 4.129106855543796e-06,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 1.4075210401642835e-06,
+                    "name": "decline"
+                }
+            ],
+            "text": "yes"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "What are you in the mood for?"
+    }
+]

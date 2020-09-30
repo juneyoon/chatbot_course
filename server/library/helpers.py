@@ -6,6 +6,7 @@ import requests
 
 from library.FoodFilter import FoodFilterClass
 from google.cloud import translate
+from library.SpeechService import convert_to_audio
 
 STATE_DEFAULT = {
     "state": "start",
@@ -222,4 +223,10 @@ def process_translation_to_user(user_state, response):
         translated = translate([response["message"]], "en", user_state['language'])
         if translated:
             response['message'] = translated[0]
+    return response
+
+def add_audio(response):
+    if response.get('message'):
+        uid = convert_to_audio(response.get('message'))
+        response['audio'] = uid
     return response

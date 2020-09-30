@@ -13,12 +13,12 @@ def process_message(user_state, message_data, connection_id):
     if response:
         log_history(user_state, connection_id, interpreted, response)
         process_translation_to_user(user_state, response)
-        return response
+        return add_audio(response)
 
     response = current_step['action'](user_state, message_data, interpreted)
     log_history(user_state, connection_id, interpreted, response)
     process_translation_to_user(user_state, response)
-    return response
+    return add_audio(response)
 
 def verify_interpret_result(user_state, interpreted, current_step_name):
     global disambiguations

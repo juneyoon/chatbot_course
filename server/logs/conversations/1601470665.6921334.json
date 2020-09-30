@@ -1,0 +1,80 @@
+[
+    {
+        "from": "user",
+        "message": "yes please",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9653654098510742,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9653654098510742,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.03218748793005943,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.002266463590785861,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.0001806724612833932,
+                    "name": "decline"
+                }
+            ],
+            "text": "yes please"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "What are you in the mood for?"
+    },
+    {
+        "from": "user",
+        "message": "Pizza of course",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 5,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 0,
+                    "value": "Pizza"
+                }
+            ],
+            "intent": {
+                "confidence": 0.9991771578788757,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9991771578788757,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.0008226154022850096,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 2.488583561444102e-07,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 2.214952221635258e-09,
+                    "name": "yes_not_sure"
+                }
+            ],
+            "text": "Pizza of course"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Here is what we have:"
+    }
+]

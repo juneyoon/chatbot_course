@@ -49,9 +49,9 @@ async def counter(websocket, path):
             if STATE.get(past_connection_id):
                 STATE[connection_id] = STATE[past_connection_id]
             else:
-                await websocket.send(json.dumps(process_translation_to_user(STATE[connection_id], first_message)))
+                await websocket.send(json.dumps(add_audio(process_translation_to_user(STATE[connection_id], first_message))))
         else:
-            await websocket.send(json.dumps(process_translation_to_user(STATE[connection_id], first_message)))
+            await websocket.send(json.dumps(add_audio(process_translation_to_user(STATE[connection_id], first_message))))
     try:
         async for message in websocket:
             message_data = json.loads(message)

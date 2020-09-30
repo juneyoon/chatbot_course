@@ -2,6 +2,15 @@ var websocket;
 var websocket_url = "wss://35.222.34.232:6789/";
 var current_connection_id = 0;
 
+var mediaRecorder = 0;
+var audioPlayer = 0;
+var audioChunks = [];
+var audioArray;
+var arrayBuffer;
+var recording = 0;
+var soundOn = 1;
+
+
 function verifyConnection() {
   if (websocket.readyState == 1) {
     $('.connection_message').remove();
@@ -37,6 +46,9 @@ function initWebSocket() {
          $('.bot_message').remove();
          $('.user_message').remove();
          $('.chatbot_client_container').append('<div class="bot_message"><div>'+data.message+'</div></div>');
+         if (data.audio) {
+           playAudio(data.audio);
+         }
        }
        else if (data.type == "list_options") {
          $('.chatbot_client_container').append('<div class="bot_message"><div>'+data.message+'</div></div>');
@@ -48,9 +60,22 @@ function initWebSocket() {
             +'</div>';
          }
          $('.chatbot_client_container').append('<div class="bot_message"><div>'+options_html+'</div></div>');
+         if (data.audio) {
+           playAudio(data.audio);
+         }
          scrollContainer();
+       } else if (data.type == "audio_response") {
+         if (data.message) {
+            $('#chatbot_client_input_text').val(data.message);
+            if (data.audio) {
+              playAudio(data.audio);
+            }
+         }
        } else {
          $('.chatbot_client_container').append('<div class="bot_message"><div>'+data.message+'</div></div>');
+         if (data.audio) {
+           playAudio(data.audio);
+         }
          scrollContainer();
        }
 
@@ -74,17 +99,22 @@ function constructLanguageButton() {
 
 function initChat() {
   $('#chatbot_client').html(
-    '<div class="chatbot_client_header">Food Order Bot'+constructLanguageButton()+'</div>'
+    '<div class="chatbot_client_header">Food Order Bot'+constructLanguageButton()
+    +'<button id="chatbot_client_audio_button"></button>'
+    +'</div>'
     +'<div class="chatbot_client_container">'
     +'</div>'
     +'<div class="chatbot_client_input">'
     +  '<input type="text" name="chatbot_client_input" placeholder="Type a message..." id="chatbot_client_input_text" />'
     +  '<button id="chatbot_client_input_button"></button>'
+    +  '<button id="chatbot_client_mic_button"></button>'
     +'</div>'
   );
   $('#chatbot_client_language_select').val('en');
   $('#chatbot_client_input_button').click(onSendMessage);
   $('#chatbot_client_language_select').change(onLanguageChange);
+  $('#chatbot_client_mic_button').click(onMicClick);
+  $('#chatbot_client_audio_button').click(onAudioClick);
   $('#chatbot_client_input_text').keyup(onInputKeyUp);
 }
 
@@ -117,8 +147,127 @@ function onSendMessage() {
   }
 }
 
+
+function onAudioClick() {
+  if (soundOn) {
+    $('#chatbot_client_audio_button').addClass("off");
+    soundOn = 0;
+    if (audioPlayer) {
+      audioPlayer.pause();
+    }
+  } else {
+    $('#chatbot_client_audio_button').removeClass("off");
+    soundOn = 1;
+
+  }
+}
+
+function onMicClick() {
+  if (recording == 0)
+    recordStart();
+  else
+    recordStop();
+}
+
+function recordStart() {
+  $('#chatbot_client_mic_button').addClass("recording");
+  recording = 1;
+  if (audioPlayer) {
+    audioPlayer.pause();
+  }
+  mediaRecorder.start();
+  window.setTimeout(recordAutoStop, 10000);
+}
+
+function recordStop() {
+  $('#chatbot_client_mic_button').removeClass("recording");
+  recording = 0;
+  mediaRecorder.stop();
+  //audioBlob = new Blob(audioChunks, { 'type' : 'audio/webm; codecs=opus' });
+}
+
+function recordAutoStop() {
+  if (recording) {
+    recordStop();
+  }
+}
+
+
+function getAudioMediaStream() {
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+   console.log('getUserMedia supported.');
+   navigator.mediaDevices.getUserMedia (
+      // constraints - only audio needed for this app
+      {
+         audio: true
+      })
+
+      // Success callback
+      .then(function(stream) {
+        var options = {
+          audioBitsPerSecond: 44100,
+        }
+          mediaRecorder = new MediaRecorder(stream, options);
+          mediaRecorder.ondataavailable = function(e) {
+            audioChunks.push(e.data);
+          }
+          mediaRecorder.onstop = function(e) {
+            sendBlob();
+            audioChunks = [];
+          }
+      })
+
+      // Error callback
+      .catch(function(err) {
+         console.log('The following getUserMedia error occured: ' + err);
+      }
+   );
+} else {
+  $('#chatbot_client_input_button').hide();
+   console.log('getUserMedia not supported on your browser!');
+}
+}
+
+function sendBlob() {
+  var audioBlob = new Blob(audioChunks, { 'type' : 'audio/webm; codecs=opus' });
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function(e) {
+      if (this.readyState === 4) {
+          console.log("Server returned: ", e.target.responseText);
+          var res = JSON.parse(e.target.responseText);
+          if (res.response) {
+            $('#chatbot_client_input_text').val(res.response);
+            onSendMessage();
+          }
+      }
+  };
+  var fd = new FormData();
+  fd.append("audio_data", audioBlob, new Date().getTime()+".weba");
+  //xhr.addEventListener("load", reqListener);
+  xhr.open("POST", "https://35.222.34.232:5001/audio_process", true);
+  xhr.send(fd);
+
+}
+
+async function playAudio(uid) {
+  audioPlayer = new Audio('assets/audios/'+uid+'.mp3');
+  audioPlayer.type = 'audio/mp3';
+  if (soundOn) {
+    try {
+      await audioPlayer.play();
+      console.log('Playing...');
+    } catch (err) {
+      console.log('Failed to play...' + err);
+    }
+  }
+}
+
+
+
+
 window.onload = function() {
   initChat();
+  getAudioMediaStream();
   initWebSocket();
   window.setInterval(verifyConnection, 1000);
 }
