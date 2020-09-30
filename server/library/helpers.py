@@ -5,12 +5,14 @@ import json
 import requests
 
 from library.FoodFilter import FoodFilterClass
+from google.cloud import translate
 
 STATE_DEFAULT = {
     "state": "start",
     "order": [],
     "FoodFilter": None,
-    "history": []
+    "history": [],
+    "language": "en"
 }
 
 def new_state():
@@ -186,3 +188,38 @@ def log_history(user_state, connection_id, interpreted, response):
     user_state['history'].append(bot_log)
     with open("logs/conversations/{}.json".format(connection_id), 'w') as outfile:
         json.dump(user_state['history'], outfile, indent=4)
+
+
+project_id = "thematic-bloom-275007"
+translate_parent = 'projects/{}'.format(project_id)
+translateClient = translate.TranslationServiceClient()
+
+def translate(text, lang_from, lang_to):
+    if len(text)>128:
+        text = text[:128]
+    response = translateClient.translate_text(
+    parent=translate_parent,
+    contents=text,
+    mime_type='text/plain',  # mime types: text/plain, text/html
+    source_language_code=lang_from,
+    target_language_code=lang_to)
+
+    res = []
+    for line in response.translations:
+        res.append(line.translated_text)
+
+    return res
+
+
+def process_translation_from_user(user_state, message_data):
+    if user_state['language'] != "en" and message_data.get("message"):
+        translated = translate([message_data["message"]], user_state['language'], "en")
+        if translated:
+            message_data['message'] = translated[0]
+
+def process_translation_to_user(user_state, response):
+    if user_state['language'] != "en" and response.get("message"):
+        translated = translate([response["message"]], "en", user_state['language'])
+        if translated:
+            response['message'] = translated[0]
+    return response

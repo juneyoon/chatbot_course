@@ -7,14 +7,17 @@ def process_message(user_state, message_data, connection_id):
     if global_steps.get(user_state['state']):
         current_step = global_steps[user_state['state']]
 
+    process_translation_from_user(user_state, message_data)
     interpreted = interpret_service(current_step['interpreter'], message_data.get('message'))
     response = verify_interpret_result(user_state, interpreted, user_state['state'])
     if response:
         log_history(user_state, connection_id, interpreted, response)
+        process_translation_to_user(user_state, response)
         return response
 
     response = current_step['action'](user_state, message_data, interpreted)
     log_history(user_state, connection_id, interpreted, response)
+    process_translation_to_user(user_state, response)
     return response
 
 def verify_interpret_result(user_state, interpreted, current_step_name):

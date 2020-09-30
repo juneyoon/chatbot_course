@@ -1,0 +1,115 @@
+[
+    {
+        "from": "user",
+        "message": "yes",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.999969482421875,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.999969482421875,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 2.502244387869723e-05,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 4.129106855543796e-06,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 1.4075210401642835e-06,
+                    "name": "decline"
+                }
+            ],
+            "text": "yes"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "What are you in the mood for?"
+    },
+    {
+        "from": "user",
+        "message": "yes",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.999969482421875,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.999969482421875,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 2.502244387869723e-05,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 4.129106855543796e-06,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 1.4075210401642835e-06,
+                    "name": "decline"
+                }
+            ],
+            "text": "yes"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "What are you in the mood for?"
+    },
+    {
+        "from": "user",
+        "message": "Pizza?",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 5,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 0,
+                    "value": "Pizza"
+                }
+            ],
+            "intent": {
+                "confidence": 0.9999725818634033,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9999725818634033,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 1.9320015780976973e-05,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 8.06126536190277e-06,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 3.0050927080083056e-08,
+                    "name": "yes_not_sure"
+                }
+            ],
+            "text": "Pizza?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Here is what we have:"
+    }
+]

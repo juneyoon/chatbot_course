@@ -173,3 +173,15 @@
   width: 100%;
   max-width: 200px;
 }
+
+
+#chatbot_client_language_select {
+  float: right;
+  width: 100px;
+  border: 1px solid #FFF;
+  background: #6c2d38;
+  color: #FFF;
+  padding: 3px 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
