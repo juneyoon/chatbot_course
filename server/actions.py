@@ -10,9 +10,11 @@ def process_message(user_state, message_data, connection_id):
     interpreted = interpret_service(current_step['interpreter'], message_data.get('message'))
     response = verify_interpret_result(user_state, interpreted, user_state['state'])
     if response:
+        log_history(user_state, connection_id, interpreted, response)
         return response
 
     response = current_step['action'](user_state, message_data, interpreted)
+    log_history(user_state, connection_id, interpreted, response)
     return response
 
 def verify_interpret_result(user_state, interpreted, current_step_name):

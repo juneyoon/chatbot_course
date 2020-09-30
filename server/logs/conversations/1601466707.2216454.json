@@ -1,0 +1,115 @@
+[
+    {
+        "from": "user",
+        "message": "Yes, I want some nachos",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 23,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 17,
+                    "value": "nachos"
+                }
+            ],
+            "intent": {
+                "confidence": 0.9996998310089111,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9996998310089111,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.00015971620450727642,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.00010562911484157667,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 3.485647903289646e-05,
+                    "name": "decline"
+                }
+            ],
+            "text": "Yes, I want some nachos"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Here is what we have:"
+    },
+    {
+        "from": "user",
+        "message": "ok",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 1.0,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 1.0,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 1.3134423326732758e-08,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 1.0206954170755012e-09,
+                    "name": "yes_x_y"
+                }
+            ],
+            "text": "ok"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "So you want sweetcorn & tomato nachos for 13$?"
+    },
+    {
+        "from": "user",
+        "message": "yes",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9999994039535522,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9999994039535522,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 4.956326051797078e-07,
+                    "name": "just_y"
+                },
+                {
+                    "confidence": 7.357421338838321e-08,
+                    "name": "not_x"
+                },
+                {
+                    "confidence": 7.1931132161751066e-09,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 3.489845745718867e-09,
+                    "name": "just_y+not_x"
+                }
+            ],
+            "text": "yes"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Anything else?"
+    }
+]

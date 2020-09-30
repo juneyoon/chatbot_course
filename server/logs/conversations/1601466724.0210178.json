@@ -1,0 +1,76 @@
+[
+    {
+        "from": "user",
+        "message": "I want to order something",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.4787919819355011,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.4787919819355011,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.4017016589641571,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.11359098553657532,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 0.0059153735637664795,
+                    "name": "yes_not_sure"
+                }
+            ],
+            "text": "I want to order something"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Sorry, I'm not sure what you meant. Did you mean \"Yes, I want to make an order\", or \"Yes, I want [x]\"?",
+        "disambiguisation": {
+            "intent_1": "yes_simple",
+            "intent_2": "yes_x_y"
+        }
+    },
+    {
+        "from": "user",
+        "message": "Yes, I want to make an order",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9994494915008545,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9994494915008545,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.0003633789310697466,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.0001594204513821751,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 2.7720589059754275e-05,
+                    "name": "yes_x_y"
+                }
+            ],
+            "text": "Yes, I want to make an order"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "What are you in the mood for?"
+    }
+]

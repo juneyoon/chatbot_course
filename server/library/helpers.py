@@ -9,7 +9,8 @@ from library.FoodFilter import FoodFilterClass
 STATE_DEFAULT = {
     "state": "start",
     "order": [],
-    "FoodFilter": None
+    "FoodFilter": None,
+    "history": []
 }
 
 def new_state():
@@ -166,3 +167,22 @@ def compose_text_from_list(entities):
         text += " and " + entities[-1]
         return text
     return ", ".join(entities)
+
+
+def log_history(user_state, connection_id, interpreted, response):
+    user_state['history'].append({
+        "from": "user",
+        "message": interpreted['text'],
+        "intent": interpreted['intent']['name'],
+        "interpreted": interpreted,
+    })
+    bot_log = {
+        "from": "bot",
+        "message": response.get('message')
+    }
+    if user_state.get('disambiguisation'):
+        bot_log['disambiguisation'] = user_state['disambiguisation']
+        user_state['disambiguisation'] = None
+    user_state['history'].append(bot_log)
+    with open("logs/conversations/{}.json".format(connection_id), 'w') as outfile:
+        json.dump(user_state['history'], outfile, indent=4)
