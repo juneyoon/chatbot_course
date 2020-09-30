@@ -8,11 +8,32 @@ def process_message(user_state, message_data, connection_id):
         current_step = global_steps[user_state['state']]
 
     interpreted = interpret_service(current_step['interpreter'], message_data.get('message'))
-    print("Action - {}".format(user_state['state']))
-    pprint(interpreted)
+    response = verify_interpret_result(user_state, interpreted, user_state['state'])
+    if response:
+        return response
 
     response = current_step['action'](user_state, message_data, interpreted)
     return response
+
+def verify_interpret_result(user_state, interpreted, current_step_name):
+    global disambiguations
+    print("Action - {}".format(user_state['state']))
+    pprint(interpreted)
+
+    if interpreted['intent']['confidence'] >= 0.8:
+        return None
+
+    if len(interpreted['intent_ranking']) > 1:
+        sum_first2 = interpreted['intent_ranking'][0]['confidence'] + interpreted['intent_ranking'][1]['confidence']
+        if sum_first2 >= 0.8:
+            result = ask_disambiguisation(user_state, interpreted, current_step_name, disambiguations)
+            if result:
+                return result
+
+    return {
+        "type": "text",
+        "message": "Sorry I couldn't understand what you meant. I'm still learning, can you please try again more simple and precise in your meaning?"
+    }
 
 def action_default(user_state, message_data, interpreted):
     if interpreted['intent']['name'] == "yes_simple":
@@ -314,5 +335,37 @@ global_steps = {
     "final_order": {
         "interpreter": "FinalOrderInterpreter",
         "action": action_final_order
+    }
+}
+
+disambiguations = {
+    "start": {
+        "yes_simple": "Yes, I want to make an order",
+        "yes_not_sure": "Not sure what I want",
+        "yes_x_y": "Yes, I want [order_item]",
+        "decline": "don't want anything"
+    },
+    "ask_mood": {
+        "yes_not_sure": "Not sure, what do you have?",
+        "yes_x_y": "I want [order_item]",
+        "decline": "don't want anything"
+    },
+    "menu_or_help": {
+        "help": "Help me find something else",
+        "yes_simple": "Yes, help me",
+        "yes_menu": "Yes, I want the menu",
+        "yes_x_y": "I only want the [order_item]",
+        "decline": "don't want anything"
+    },
+    "list_options": {
+        "something_else": "Do you have [order_item]?",
+        "yes_x_y": "I want [order_item]"
+    },
+    "confirm_order": {
+        "decline": "Don't finish the order",
+        "yes_simple": "Yes, finish the order",
+        "just_y": "Keep only the [order_item_yes]",
+        "not_x": "Remove the [order_item_no] from the order",
+        "just_y+not_x": "Keep the [order_item_yes], remove the [order_item_no]"
     }
 }

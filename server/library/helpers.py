@@ -116,3 +116,53 @@ def list_options_generate(user_state):
 
     user_state['state'] = "list_options"
     return message
+
+
+def ask_disambiguisation(user_state, interpreted, current_step_name, disambiguisations):
+    if disambiguisations.get(current_step_name):
+        text_1 = generate_disambiguisation_text(interpreted, disambiguisations[current_step_name].get(interpreted['intent_ranking'][0]['name']))
+        text_2 = generate_disambiguisation_text(interpreted, disambiguisations[current_step_name].get(interpreted['intent_ranking'][1]['name']))
+        if text_1 and text_2:
+            user_state['disambiguisation'] = {
+                "intent_1": interpreted['intent_ranking'][0]['name'],
+                "intent_2": interpreted['intent_ranking'][1]['name']
+            }
+            return {
+                "type": "text",
+                "message": "Sorry, I'm not sure what you meant. Did you mean \"{}\", or \"{}\"?".format(text_1, text_2)
+            }
+    return None
+
+
+def generate_disambiguisation_text(interpreted, text):
+    txt = text
+    entities = re.findall("\[[a-z_]+\]", txt)
+    if entities:
+        if len(entities) > 1:
+            for entity in entities:
+                entity_replacements = []
+                for i_entity in interpreted['entities']:
+                    if i_entity['entity'] == entity[1:-1]:
+                        entity_replacements.append(i_entity['value'])
+                if entity_replacements:
+                    txt = txt.replace(entity, compose_text_from_list(entity_replacements))
+                else:
+                    txt = txt.replace(entity, "[x]")
+        else:
+            entity = entities[0]
+            entity_replacements = []
+            for i_entity in interpreted['entities']:
+                entity_replacements.append(i_entity['value'])
+            if entity_replacements:
+                txt = txt.replace(entity, compose_text_from_list(entity_replacements))
+            else:
+                txt = txt.replace(entity, "[x]")
+    return txt
+
+
+def compose_text_from_list(entities):
+    if len(entities) > 2:
+        text = ", ".join(entities[:-1])
+        text += " and " + entities[-1]
+        return text
+    return ", ".join(entities)
