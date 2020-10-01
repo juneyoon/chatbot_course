@@ -1,6 +1,8 @@
 var websocket;
 var websocket_url = "wss://35.222.34.232:6789/";
 var current_connection_id = 0;
+var current_language_code = "en";
+var current_state = "start";
 
 var mediaRecorder = 0;
 var audioPlayer = 0;
@@ -27,17 +29,20 @@ function initWebSocket() {
    websocket.onmessage = function (event) {
        data = JSON.parse(event.data);
        $('#bot_waiting').remove();
+       if (data.state) current_state = data.state;
        if (data.type == "connection_id") {
          if (current_connection_id == 0) {
            current_connection_id = data.connection_id;
            websocket.send(JSON.stringify({
              type: 'connection_id',
-             connection_id: current_connection_id
+             connection_id: current_connection_id,
+             language_code: current_language_code
            }));
          } else {
            websocket.send(JSON.stringify({
              type: 'connection_id',
-             connection_id: current_connection_id
+             connection_id: current_connection_id,
+             language_code: current_language_code
            }));
            current_connection_id = data.connection_id;
          }
@@ -243,6 +248,8 @@ function sendBlob() {
   };
   var fd = new FormData();
   fd.append("audio_data", audioBlob, new Date().getTime()+".weba");
+  fd.append("language_code", current_language_code);
+  fd.append("state", current_state);
   //xhr.addEventListener("load", reqListener);
   xhr.open("POST", "https://35.222.34.232:5001/audio_process", true);
   xhr.send(fd);

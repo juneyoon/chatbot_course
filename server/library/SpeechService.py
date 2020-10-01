@@ -5,6 +5,8 @@ import os
 import time
 import json
 from google.cloud import texttospeech
+from library.language_codes import speechToTextLanguages, textToSpeechLanguages
+from library.step_possibilities import step_possibilities
 
 speechToTextClient = speech_v1.SpeechClient()
 language_code = "en-US"
@@ -12,7 +14,6 @@ sample_rate_hertz = 48000
 encoding = speech_v1.RecognitionConfig.AudioEncoding.LINEAR16
 config = {
     "language_code": language_code,
-    #"alternative_language_codes": "ro",
     "sample_rate_hertz": sample_rate_hertz,
     "encoding": encoding,
     "model": 'default'
@@ -28,10 +29,16 @@ def parse_data(filename_weba, filename_wav):
             return audio
     return content
 
-def speech_to_text(filename_weba, filename_wav):
+def speech_to_text(language_code, state, filename_weba, filename_wav):
     current_config = config
-    #if data.get('step') and step_possibilities.get(data['step']):
-    #    current_config['speech_contexts'] = [speech.SpeechContext(phrases=step_possibilities.get(data['step']))]
+    if language_code in speechToTextLanguages:
+        current_config['language_code'] = language_code
+    if language_code == "en" and step_possibilities.get(state):
+        current_config['speech_contexts'] = [
+            {
+                'phrases':step_possibilities.get(state)
+            }
+        ]
     audio = parse_data(filename_weba, filename_wav)
     if audio:
         response = speechToTextClient.recognize(request={"config": current_config, 'audio': audio})
@@ -40,6 +47,7 @@ def speech_to_text(filename_weba, filename_wav):
             if result.alternatives:
                 return result.alternatives[0].transcript
     return None
+
 
 
 client = texttospeech.TextToSpeechClient()
@@ -57,10 +65,16 @@ audios = {}
 with open("audios.json", 'r') as file:
     audios = json.load(file)
 
-def convert_to_audio(text, prefix=""):
+def convert_to_audio(language_code, text, prefix=""):
     global audios
-    if text in audios:
+    if "{}_{}".format(language_code, text) in audios:
         return audios[text]
+    if language_code in textToSpeechLanguages:
+        voice = texttospeech.VoiceSelectionParams(
+            language_code=textToSpeechLanguages[language_code],
+            ssml_gender=texttospeech.SsmlVoiceGender.MALE)
+    else:
+        return None
     synthesis_input = texttospeech.SynthesisInput(text=text)
     response = client.synthesize_speech(input=synthesis_input, voice=voice, audio_config=audio_config)
     uid = "{}{}".format(prefix, time.time())

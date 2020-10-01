@@ -1,0 +1,37 @@
+[
+    {
+        "from": "user",
+        "message": "what is the meaning of life?",
+        "intent": "yes_not_sure",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9562082886695862,
+                "name": "yes_not_sure"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9562082886695862,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.030772004276514053,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.009251370094716549,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 0.003768399590626359,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "what is the meaning of life?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Don't know, but look at all this delicious food:"
+    }
+]

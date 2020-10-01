@@ -13,13 +13,15 @@ CORS(app)
 @app.route('/audio_process', methods=['POST'])
 def audio_process():
     uploaded_file = request.files['audio_data']
+    language_code = request.form.get('language_code')
+    state = request.form.get('state')
     t = time.time()
     filename_weba = "audio_files/{}.weba".format(t)
     filename_wav = "audio_files/{}.wav".format(t)
     if uploaded_file.filename != '':
         uploaded_file.save(filename_weba)
 
-    response = speech_to_text(filename_weba, filename_wav)
+    response = speech_to_text(language_code, state, filename_weba, filename_wav)
     return jsonify({"response": response})
 
 

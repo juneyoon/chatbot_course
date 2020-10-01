@@ -1,0 +1,126 @@
+[
+    {
+        "from": "user",
+        "message": "hello",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9934003353118896,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9934003353118896,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.004034611862152815,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.0025225558783859015,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 4.250193160260096e-05,
+                    "name": "yes_x_y"
+                }
+            ],
+            "text": "hello"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "What are you in the mood for?"
+    },
+    {
+        "from": "user",
+        "message": "I would like",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9988412261009216,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9988412261009216,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.0005130942445248365,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 0.00036404983256943524,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.00028157237102277577,
+                    "name": "yes_not_sure"
+                }
+            ],
+            "text": "I would like"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Nothing found. Would you like me to help you choose?"
+    },
+    {
+        "from": "user",
+        "message": "I would like some Japanese mochi",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 26,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 18,
+                    "value": "Japanese"
+                },
+                {
+                    "end": 32,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 27,
+                    "value": "mochi"
+                }
+            ],
+            "intent": {
+                "confidence": 0.9999998807907104,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9999998807907104,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 7.016515013447133e-08,
+                    "name": "help"
+                },
+                {
+                    "confidence": 6.963611554056115e-08,
+                    "name": "yes_menu"
+                },
+                {
+                    "confidence": 4.366292216673173e-09,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 2.4484461125240387e-09,
+                    "name": "decline"
+                }
+            ],
+            "text": "I would like some Japanese mochi"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Here is what we have:"
+    }
+]

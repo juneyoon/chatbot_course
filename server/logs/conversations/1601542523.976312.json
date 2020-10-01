@@ -1,0 +1,348 @@
+[
+    {
+        "from": "user",
+        "message": "where is the library",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.7970010042190552,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.7970010042190552,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.15139934420585632,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.04604003578424454,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.005559598095715046,
+                    "name": "decline"
+                }
+            ],
+            "text": "where is the library"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Sorry, I'm not sure what you meant. Did you mean \"Yes, I want to make an order\", or \"Not sure what I want\"?",
+        "disambiguisation": {
+            "intent_1": "yes_simple",
+            "intent_2": "yes_not_sure"
+        }
+    },
+    {
+        "from": "user",
+        "message": "yes I want to place an order",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 19,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 14,
+                    "value": "place"
+                }
+            ],
+            "intent": {
+                "confidence": 0.9932621121406555,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9932621121406555,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.003939746879041195,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.0015922532184049487,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.0012058895081281662,
+                    "name": "decline"
+                }
+            ],
+            "text": "yes I want to place an order"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "What are you in the mood for?"
+    },
+    {
+        "from": "user",
+        "message": "I do not know",
+        "intent": "yes_not_sure",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9990320205688477,
+                "name": "yes_not_sure"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9990320205688477,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.0008870274759829044,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 4.307548806536943e-05,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 3.789959373534657e-05,
+                    "name": "yes_x_y"
+                }
+            ],
+            "text": "I do not know"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Ok then, I can help you. For today\u2019s special we have Vegan ramen and Caramel souffl\u00e9s with caramel sauce with 10$. Is that ok for you, or would you like me to help you find something else?"
+    },
+    {
+        "from": "user",
+        "message": "Help me",
+        "intent": "help",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9999629259109497,
+                "name": "help"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9999629259109497,
+                    "name": "help"
+                },
+                {
+                    "confidence": 2.003726694965735e-05,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 7.803363587299827e-06,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 4.7439693844353314e-06,
+                    "name": "yes_menu"
+                },
+                {
+                    "confidence": 4.493715096032247e-06,
+                    "name": "decline"
+                }
+            ],
+            "text": "Help me"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Would you like a meal, a soup, a pizza or maybe something sweet?"
+    },
+    {
+        "from": "user",
+        "message": "a meal",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 6,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 0,
+                    "value": "a meal"
+                }
+            ],
+            "intent": {
+                "confidence": 0.9998708367347717,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9998708367347717,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.00010927316907327622,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 1.9263263311586343e-05,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 6.471115625572565e-07,
+                    "name": "yes_not_sure"
+                }
+            ],
+            "text": "a meal"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Do you preffer a specific cuisine? We have French, Japanese, Italian and Mexican."
+    },
+    {
+        "from": "user",
+        "message": "Italian and Mexican",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 7,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 0,
+                    "value": "Italian"
+                },
+                {
+                    "end": 19,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 12,
+                    "value": "Mexican"
+                }
+            ],
+            "intent": {
+                "confidence": 1.0,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 1.0,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 4.555597232780428e-09,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 7.459381445862334e-10,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 2.9623570957371115e-11,
+                    "name": "yes_not_sure"
+                }
+            ],
+            "text": "Italian and Mexican"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Do you have any food restrictions?"
+    },
+    {
+        "from": "user",
+        "message": "not",
+        "intent": "decline",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9529989957809448,
+                "name": "decline"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9529989957809448,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 0.046958159655332565,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 3.752701013581827e-05,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 5.316059286997188e-06,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "not"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Here is what we have:"
+    },
+    {
+        "from": "user",
+        "message": "I want the Dani",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9999909400939941,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9999909400939941,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 8.491697371937335e-06,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 5.790809609607095e-07,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "I want the Dani"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Sorry couldn't understand what you meant, please be more precise in your choice. Or do you want something else?"
+    },
+    {
+        "from": "user",
+        "message": "I want",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9996340870857239,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9996340870857239,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.00029876650660298765,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 6.716373172821477e-05,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "I want"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Sorry couldn't understand what you meant, please be more precise in your choice. Or do you want something else?"
+    }
+]

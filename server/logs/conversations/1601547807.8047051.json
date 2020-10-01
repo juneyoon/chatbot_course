@@ -1,0 +1,212 @@
+[
+    {
+        "from": "user",
+        "message": "What's the secret of life?",
+        "intent": "yes_not_sure",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9754145741462708,
+                "name": "yes_not_sure"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9754145741462708,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.011459285393357277,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.010099194943904877,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.0030269611161202192,
+                    "name": "decline"
+                }
+            ],
+            "text": "What's the secret of life?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Ok then, I can help you. For today\u2019s special we have Salade ni\u00e7oise and Tiramisu with 10$. Is that ok for you, or would you like me to help you find something else?"
+    },
+    {
+        "from": "user",
+        "message": "what is the meaning of life?",
+        "intent": "yes_menu",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.6868219971656799,
+                "name": "yes_menu"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.6868219971656799,
+                    "name": "yes_menu"
+                },
+                {
+                    "confidence": 0.15732866525650024,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.07410721480846405,
+                    "name": "help"
+                },
+                {
+                    "confidence": 0.06133880093693733,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 0.020403385162353516,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "what is the meaning of life?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Don't know, but look at all this delicious food:"
+    },
+    {
+        "from": "user",
+        "message": "what is the secret of life?",
+        "intent": "something_else",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.5737012624740601,
+                "name": "something_else"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.5737012624740601,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.394342303276062,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.03195648267865181,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "what is the secret of life?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Sorry, I'm not sure what you meant. Did you mean \"Do you have [x]?\", or \"I want [x]\"?",
+        "disambiguisation": {
+            "intent_1": "something_else",
+            "intent_2": "yes_x_y"
+        }
+    },
+    {
+        "from": "user",
+        "message": "Do you have Pizza?",
+        "intent": "something_else",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 17,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 12,
+                    "value": "Pizza"
+                }
+            ],
+            "intent": {
+                "confidence": 0.8952386379241943,
+                "name": "something_else"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.8952386379241943,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.10467684268951416,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 8.456651266897097e-05,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "Do you have Pizza?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Here is what we have:"
+    },
+    {
+        "from": "user",
+        "message": "Do you love me?",
+        "intent": "something_else",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9523797631263733,
+                "name": "something_else"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9523797631263733,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.02828339859843254,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.01933681033551693,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "Do you love me?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Maybe, depends if you buy some of this delicious food:"
+    },
+    {
+        "from": "user",
+        "message": "Do you like me?",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.9119578003883362,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9119578003883362,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.075797438621521,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.012244774959981441,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "Do you like me?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Sorry couldn't understand what you meant, please be more precise in your choice. Or do you want something else?"
+    }
+]

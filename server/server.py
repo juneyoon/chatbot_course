@@ -4,6 +4,7 @@ import logging
 import websockets
 import ssl
 import time
+import copy
 
 from library.helpers import *
 from actions import process_message
@@ -31,6 +32,18 @@ async def unregister(connection_id):
     #CONNECTIONS.remove(connection_id)
     pass
 
+def process_user_response(user_state, message):
+    message['state'] = user_state['state']
+    return json.dumps(
+            add_audio(
+                user_state,
+                process_translation_to_user(
+                    user_state,
+                    message
+                )
+            )
+        )
+
 async def counter(websocket, path):
     print("New Connection")
     connection_id = await register(websocket)
@@ -49,16 +62,16 @@ async def counter(websocket, path):
             if STATE.get(past_connection_id):
                 STATE[connection_id] = STATE[past_connection_id]
             else:
-                await websocket.send(json.dumps(add_audio(process_translation_to_user(STATE[connection_id], first_message))))
+                await websocket.send(process_user_response(STATE[connection_id], copy.deepcopy(first_message)))
         else:
-            await websocket.send(json.dumps(add_audio(process_translation_to_user(STATE[connection_id], first_message))))
+            await websocket.send(process_user_response(STATE[connection_id], copy.deepcopy(first_message)))
     try:
         async for message in websocket:
             message_data = json.loads(message)
             if message_data.get("language_code"):
                 STATE[connection_id] = new_state()
                 STATE[connection_id]['language'] = message_data.get("language_code")
-                await websocket.send(json.dumps(process_translation_to_user(STATE[connection_id], first_message)))
+                await websocket.send(process_user_response(STATE[connection_id], copy.deepcopy(first_message)))
             if message_data.get("message"):
                 result = process_message(STATE[connection_id], message_data, connection_id)
                 await websocket.send(json.dumps(result))

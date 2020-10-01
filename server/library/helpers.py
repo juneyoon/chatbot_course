@@ -121,6 +121,13 @@ def list_options_generate(user_state):
     user_state['state'] = "list_options"
     return message
 
+def offer_random_food(user_state):
+    results = user_state['FoodFilter'].generate_random_food()
+    user_state['current_options'] = results
+    message = parse_search_results(results)
+
+    user_state['state'] = "list_options"
+    return message
 
 def ask_disambiguisation(user_state, interpreted, current_step_name, disambiguisations):
     if disambiguisations.get(current_step_name):
@@ -225,8 +232,14 @@ def process_translation_to_user(user_state, response):
             response['message'] = translated[0]
     return response
 
-def add_audio(response):
+def add_audio(user_state, response):
     if response.get('message'):
-        uid = convert_to_audio(response.get('message'))
+        uid = convert_to_audio(user_state['language'], response.get('message'))
         response['audio'] = uid
     return response
+
+def transform_user_response(user_state, connection_id, interpreted, response):
+    log_history(user_state, connection_id, interpreted, response)
+    process_translation_to_user(user_state, response)
+    response['state'] = user_state['state']
+    return add_audio(user_state, response)

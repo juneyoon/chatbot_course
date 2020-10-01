@@ -1,5 +1,7 @@
 from library.helpers import *
 from pprint import pprint
+from library.SimilarityService import similarity_sentences
+from library.special_phrases import see_if_special_phrase
 
 def process_message(user_state, message_data, connection_id):
     global global_steps
@@ -9,16 +11,17 @@ def process_message(user_state, message_data, connection_id):
 
     process_translation_from_user(user_state, message_data)
     interpreted = interpret_service(current_step['interpreter'], message_data.get('message'))
+
+    special_phrase_result = see_if_special_phrase(user_state, message_data)
+    if special_phrase_result:
+        return transform_user_response(user_state, connection_id, interpreted, special_phrase_result)
+
     response = verify_interpret_result(user_state, interpreted, user_state['state'])
     if response:
-        log_history(user_state, connection_id, interpreted, response)
-        process_translation_to_user(user_state, response)
-        return add_audio(response)
+        return transform_user_response(user_state, connection_id, interpreted, response)
 
     response = current_step['action'](user_state, message_data, interpreted)
-    log_history(user_state, connection_id, interpreted, response)
-    process_translation_to_user(user_state, response)
-    return add_audio(response)
+    return transform_user_response(user_state, connection_id, interpreted, response)
 
 def verify_interpret_result(user_state, interpreted, current_step_name):
     global disambiguations
@@ -111,7 +114,7 @@ def action_help_category(user_state, message_data, interpreted):
         entities = message_data['message'].split()
 
     for entity in entities:
-        sim_scores = user_state['FoodFilter'].similarity_sentences(options, entity)
+        sim_scores = similarity_sentences(options, entity)
         max_s, max_index = get_max_and_index(sim_scores)
         if max_s >= 0.5:
             filter = {
@@ -137,7 +140,7 @@ def action_help_country(user_state, message_data, interpreted):
         entities = message_data['message'].split()
 
     for entity in entities:
-        sim_scores = user_state['FoodFilter'].similarity_sentences(options, entity)
+        sim_scores = similarity_sentences(options, entity)
         max_s, max_index = get_max_and_index(sim_scores)
         if max_s >= 0.5:
             filter = {
@@ -163,7 +166,7 @@ def action_help_restrictions(user_state, message_data, interpreted):
         entities = message_data['message'].split()
 
     for entity in entities:
-        sim_scores = user_state['FoodFilter'].similarity_sentences(options, entity)
+        sim_scores = similarity_sentences(options, entity)
         max_s, max_index = get_max_and_index(sim_scores)
         if max_s >= 0.5:
             filter = {

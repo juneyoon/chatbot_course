@@ -6,3 +6,5 @@ server:
 	cd server; nohup python server.py &
 interpreters_server:
 	cd interpreters; nohup python interpreters.py &
+audio_server:
+	cd server; nohup python audio_server.py &

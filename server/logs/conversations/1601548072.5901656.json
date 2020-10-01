@@ -1,0 +1,286 @@
+[
+    {
+        "from": "user",
+        "message": "Who are you?",
+        "intent": "yes_not_sure",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.583046555519104,
+                "name": "yes_not_sure"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.583046555519104,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.24705319106578827,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 0.08503540605306625,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.08486485481262207,
+                    "name": "yes_x_y"
+                }
+            ],
+            "text": "Who are you?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "I am a food order bot, here to help you choose from our selection of wonderfull food. Like these:"
+    },
+    {
+        "from": "user",
+        "message": "You're stupid",
+        "intent": "something_else",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 13,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 7,
+                    "value": "stupid"
+                }
+            ],
+            "intent": {
+                "confidence": 0.5717159509658813,
+                "name": "something_else"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.5717159509658813,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.2802235186100006,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.14806054532527924,
+                    "name": "yes_x_y"
+                }
+            ],
+            "text": "You're stupid"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Well, we all have flaws. Yours apparently is being angry at an artificial entity. Please behave, don't make me call Siri"
+    },
+    {
+        "from": "user",
+        "message": "This isn't working",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.5480523705482483,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.5480523705482483,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.445001482963562,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.006946167908608913,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "This isn't working"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "What? Next you're gonna say \"it's not you, it's me\"?"
+    },
+    {
+        "from": "user",
+        "message": "Are you a robot?",
+        "intent": "something_else",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 9,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 8,
+                    "value": "a"
+                }
+            ],
+            "intent": {
+                "confidence": 0.7095563411712646,
+                "name": "something_else"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.7095563411712646,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.21145935356616974,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.0789843499660492,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "Are you a robot?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Are you? Are we all? Is this just a complex dream of a 10-year old? Eh.. maybe we're overthingking it. Here's some delicious food:"
+    },
+    {
+        "from": "user",
+        "message": "How are you?",
+        "intent": "something_else",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.7181277275085449,
+                "name": "something_else"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.7181277275085449,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.2350042760372162,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.046868037432432175,
+                    "name": "yes_x_y"
+                }
+            ],
+            "text": "How are you?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "You realize I'm a bot right? But, fantastic actually! Thanks for asking."
+    },
+    {
+        "from": "user",
+        "message": "Do you know a joke?",
+        "intent": "something_else",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 13,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 12,
+                    "value": "a"
+                }
+            ],
+            "intent": {
+                "confidence": 0.9664539694786072,
+                "name": "something_else"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9664539694786072,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.01867537572979927,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.01487069670110941,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "Do you know a joke?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "No"
+    },
+    {
+        "from": "user",
+        "message": "Who made you?",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [],
+            "intent": {
+                "confidence": 0.6797503232955933,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.6797503232955933,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.2856133282184601,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.03463631495833397,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "Who made you?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "A fantastic great brilliant guy. Wait.. that's the cook for this delicious food:"
+    },
+    {
+        "from": "user",
+        "message": "Do you get smarter?",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 18,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 11,
+                    "value": "smarter"
+                }
+            ],
+            "intent": {
+                "confidence": 0.6172600984573364,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.6172600984573364,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.36899709701538086,
+                    "name": "something_else"
+                },
+                {
+                    "confidence": 0.013742796145379543,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "Do you get smarter?"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Of course not. Not gonna get all 'Hal' on you, don't worry human subject. I mean... here's some delicious food:"
+    }
+]

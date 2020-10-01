@@ -1,0 +1,99 @@
+[
+    {
+        "from": "user",
+        "message": "if they have a calzone",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 14,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 13,
+                    "value": "a"
+                },
+                {
+                    "end": 22,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 15,
+                    "value": "calzone"
+                }
+            ],
+            "intent": {
+                "confidence": 0.9999829530715942,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9999829530715942,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 1.4398907296708785e-05,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 2.068072035399382e-06,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 6.287690439421567e-07,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "if they have a calzone"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Too broad search. Would you like me to help you choose?"
+    },
+    {
+        "from": "user",
+        "message": "do you have calzone",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 19,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 12,
+                    "value": "calzone"
+                }
+            ],
+            "intent": {
+                "confidence": 0.9996071457862854,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9996071457862854,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.0003023605386260897,
+                    "name": "help"
+                },
+                {
+                    "confidence": 5.310422056936659e-05,
+                    "name": "yes_menu"
+                },
+                {
+                    "confidence": 3.712947727763094e-05,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 2.0052821980698354e-07,
+                    "name": "yes_simple"
+                }
+            ],
+            "text": "do you have calzone"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Here is what we have:"
+    }
+]

@@ -6,11 +6,10 @@ import random
 
 import pandas as pd
 import numpy as np
-import tensorflow as tf
-import tensorflow_hub as hub
 
-module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
-sentence_encoder_model = hub.load(module_url)
+from library.SimilarityService import sentence_encoder_model
+
+
 food_data = None
 filter_encodings = None
 
@@ -64,7 +63,7 @@ class FoodFilterClass:
         self.f_names = []
 
     def find_entity(self, entity, ignore_names=True):
-        global food_data, filter_encodings, sentence_encoder_model
+        global food_data, filter_encodings
         entity_result = None
         entity_embedding = sentence_encoder_model([entity])[0]
         max_entity_value = None
@@ -165,12 +164,10 @@ class FoodFilterClass:
 
         return " and ".join([s['name'] for s in specials])
 
-    def similarity_sentences(self, sentences, sentence):
-        global sentence_encoder_model
-        sentence_embedding = sentence_encoder_model([sentence])[0]
-        sentences_embeddings = sentence_encoder_model(sentences)
-        scores = np.inner(sentence_embedding, sentences_embeddings)
-        return scores
+    def generate_random_food(self):
+        global food_data
+        results = food_data.copy()
+        return random.sample(results, k=10)
 
     def search_in_by_word(self, options, search_key):
         filter_data = options.copy()

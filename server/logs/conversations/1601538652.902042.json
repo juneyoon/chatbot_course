@@ -1,0 +1,88 @@
+[
+    {
+        "from": "user",
+        "message": "yes where is the library",
+        "intent": "yes_simple",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 24,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 17,
+                    "value": "library"
+                }
+            ],
+            "intent": {
+                "confidence": 0.920110285282135,
+                "name": "yes_simple"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.920110285282135,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 0.06310661137104034,
+                    "name": "yes_not_sure"
+                },
+                {
+                    "confidence": 0.015898138284683228,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 0.0008849435835145414,
+                    "name": "decline"
+                }
+            ],
+            "text": "yes where is the library"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "What are you in the mood for?"
+    },
+    {
+        "from": "user",
+        "message": "pita",
+        "intent": "yes_x_y",
+        "interpreted": {
+            "entities": [
+                {
+                    "end": 4,
+                    "entity": "order_item",
+                    "extractor": "DIETClassifier",
+                    "start": 0,
+                    "value": "pita"
+                }
+            ],
+            "intent": {
+                "confidence": 0.9998903274536133,
+                "name": "yes_x_y"
+            },
+            "intent_ranking": [
+                {
+                    "confidence": 0.9998903274536133,
+                    "name": "yes_x_y"
+                },
+                {
+                    "confidence": 9.209461859427392e-05,
+                    "name": "yes_simple"
+                },
+                {
+                    "confidence": 1.7373597074765712e-05,
+                    "name": "decline"
+                },
+                {
+                    "confidence": 2.1922147652730928e-07,
+                    "name": "yes_not_sure"
+                }
+            ],
+            "text": "pita"
+        }
+    },
+    {
+        "from": "bot",
+        "message": "Nothing found. Would you like me to help you choose?"
+    }
+]
